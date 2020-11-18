@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Module edit form</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<h1>Module edit form</h1>
+		<form th:action="@{/modules/edit}"	th:object="${module}" method="post">
+			<p>
+				ID: <input type="hidden" th:text="${module.id}" th:field="*{id}" />
+			</p>
+			<p>
+				Name: <input type="text" th:field="*{name}" placeholder="Enter name" />
+			</p>
+			<p>
+				Parent ID: <input type="number" th:field="*{parentModule.id}" placeholder="Enter parent ID" />
+			</p>
+			<p>
+				<input type="submit" class="btn btn-success" value="Update" />
+			</p>		
+		</form>
+		<a href="/modules">Back</a>
+	</body>
+</html> 

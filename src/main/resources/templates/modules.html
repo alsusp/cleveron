@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Modules table</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<h1>Find module by ID</h1>
+		<form th:action="@{/modules}" method="get">
+			<p>
+				ID: <input type="text" th:name="id" placeholder="Enter ID" />
+			</p>
+			<p>
+				<input type="submit" class="btn btn-success" value="Submit" />
+			</p>
+		</form>
+		<div class="container">
+			<h1>Modules Table</h1>
+			<div class="row col-md-12 table-responsive">
+				<table id="modules" class="table">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Name</th>
+							<th>Parent module</th>
+							<th>Child modules</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="module, rowStat: ${modules}"
+							th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+							<td th:text="${module.id}"></td>
+							<td th:text="${module.name}"></td>
+							<td th:text="${module.parentModule != null} ? ${module.parentModule.name} : ''"></td>
+							<td>
+								<p th:each="childModule, rowStat: ${module.childModules}">
+									<span th:text="${childModule.name}"></span>
+								</p>
+							</td>
+							<td><a th:href="@{/modules/edit(id=${module.id})}">Edit</a></td>
+							<td><a th:href="@{/modules/delete(id=${module.id})}">Delete</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<a href="modules/new">Create module</a> 
+			<a href="/">Home</a>
+		</div>
+	</body>
+</html>

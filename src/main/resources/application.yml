@@ -1,0 +1,20 @@
+spring:
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        username: postgres
+        password: 1
+        url: jdbc:postgresql://localhost:5432/postgres
+        platform: postgres
+        initialization-mode: always
+        continue-on-error: true
+    jpa:
+        show-sql: true
+        generate-ddl: true
+        hibernate:
+            ddl-auto: update
+        database: postgresql
+    thymeleaf:
+        cache: false
+        enabled: true
+        prefix: classpath:/templates/
+        suffix: .html
