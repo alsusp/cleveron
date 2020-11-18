@@ -89,6 +89,7 @@ class ModuleControllerTest {
 		Module expected = new Module(2, "updatedModule");
 		expected.setParentModule(module);
 		when(moduleService.findOne(1)).thenReturn(module);
+		when(moduleService.findOne(2)).thenReturn(module);
 
 		mockMvc.perform(post("/modules/edit").flashAttr("module", expected))
 		.andDo(print())
